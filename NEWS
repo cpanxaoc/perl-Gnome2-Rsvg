@@ -1,3 +1,10 @@
+Overview of changes in Gnome2::Rsvg 0.04
+========================================
+
+* Fix various test issues.
+* Bind new API: rsvg_handle_set_base_uri, rsvg_handle_get_base_uri, and
+  rsvg_handle_get_metadata.
+
 Overview of changes in Gnome2::Rsvg 0.03
 ========================================
 
