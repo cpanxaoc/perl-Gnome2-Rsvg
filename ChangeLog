@@ -1,3 +1,8 @@
+2004/09/17 19:36 (+0200) kaffeetisch
+
+	* Makefile.PL, README: Depend on the stable 1.02 instead of the
+	unstable 1.01 series of Glib and Gtk2.
+
 2004/09/15 13:12 (+0200) kaffeetisch
 
 	* t/Rsvg.t, t/window.svg, xs/Rsvg.xs: Bind and test

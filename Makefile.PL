@@ -10,8 +10,8 @@ use File::Spec;
 our %build_reqs = (
   'perl-ExtUtils-Depends'   => '0.20',
   'perl-ExtUtils-PkgConfig' => '1.03',
-  'perl-Glib'               => '1.01',
-  'perl-Gtk2'               => '1.01',
+  'perl-Glib'               => '1.02',
+  'perl-Gtk2'               => '1.02',
   'Rsvg'                    => '2.0.0',
 );
 
