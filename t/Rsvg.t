@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 185;
+use Test::More tests => 188;
 use Gnome2::Rsvg;
 
 my $number = qr/^\d+$/;
@@ -119,8 +119,19 @@ SKIP: {
 
 SKIP: {
   skip("set_default_dpi_x_y and set_dpi_x_y are new in 2.8", 0)
-    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 7, 5)); # FIXME: 2.8
+    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 8, 0));
 
   Gnome2::Rsvg -> set_default_dpi_x_y(96, 96);
   $handle -> set_dpi_x_y(96, 96);
+}
+
+SKIP: {
+  skip("[sg]et_base_uri and get_metadata are new in 2.10", 2)
+    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 9, 0)); # FIXME: 2.10.
+
+  Gnome2::Rsvg -> set_default_dpi_x_y(96, 96);
+  $handle -> set_base_uri("file:///tmp/window.svg");
+  is($handle -> get_base_uri(), "file:///tmp/window.svg");
+
+  is($handle -> get_metadata(), "Urgs");
 }

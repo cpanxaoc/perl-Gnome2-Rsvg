@@ -1,3 +1,10 @@
+2004/09/15 13:12 (+0200) kaffeetisch
+
+	* t/Rsvg.t, t/window.svg, xs/Rsvg.xs: Bind and test
+	rsvg_handle_set_base_uri, rsvg_handle_get_base_uri and
+	rsvg_handle_get_metadata.  Adjust version checks to refer to
+	stable releases.
+
 2004/09/09 13:53 (+0200) kaffeetisch
 
 	* NEWS: Fix an error.
