@@ -1,3 +1,7 @@
+2004/07/24 19:34 (+0200) kaffeetisch
+
+	* NEWS, Rsvg.pm: Version 0.03.
+
 2004/07/24 19:29 (+0200) kaffeetisch
 
 	* t/Rsvg.t: Make the tests work on older versions of librsvg.
