@@ -1,0 +1,15 @@
+genmaps.pl
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+maps
+META.yml			Module meta-data (added by MakeMaker)
+README
+Rsvg.pm
+rsvg2perl.c
+rsvg2perl.h
+t/Rsvg.t
+t/window.svg
+t/window.svg.gz
+xs/Rsvg.xs

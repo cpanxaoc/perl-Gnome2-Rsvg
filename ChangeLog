@@ -1,0 +1,19 @@
+2003/12/25 02:41 (+0100) kaffeetisch
+
+	A .cvsignore
+	A LICENSE
+	A MANIFEST
+	A MANIFEST.SKIP
+	A META.yml
+	A Makefile.PL
+	A README
+	A Rsvg.pm
+	A genmaps.pl
+	A maps
+	A rsvg2perl.c
+	A rsvg2perl.h
+	A t/Rsvg.t
+	A t/window.svg
+	A t/window.svg.gz
+	A xs/.cvsignore
+	A xs/Rsvg.xs: Initial import.
