@@ -23,10 +23,14 @@
 
 #include <gtk2perl.h>
 #include <librsvg/rsvg.h>
+
+#include "rsvg2perl-version.h"
+
+#if LIBRSVG_CHECK_VERSION(2, 2, 0)
 #include <librsvg/rsvg-gz.h>
+#endif
 
 #include "rsvg2perl-gtypes.h"
-#include "rsvg2perl-version.h"
 
 #define RSVG2PERL_TYPE_RSVG_HANDLE (rsvg2perl_rsvg_handle_get_type ())
 GType rsvg2perl_rsvg_handle_get_type (void) G_GNUC_CONST;
