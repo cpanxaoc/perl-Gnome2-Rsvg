@@ -54,8 +54,8 @@ Gnome2::Rsvg - Perl interface to the RSVG library
 
 =head1 ABSTRACT
 
-This module allows a Perl developer to use the Raster Scalable Vector Graphics
-library (librsvg for short).
+This module allows a Perl developer to use the Scalable Vector Graphics library
+(librsvg for short).
 
 =head1 SEE ALSO
 

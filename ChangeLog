@@ -1,3 +1,9 @@
+2004/01/27 20:56 (+0100) kaffeetisch
+
+	* README
+	* Rsvg.pm: Strip the "Raster" in "Raster Scalable Vector
+	Graphics".
+
 2004/01/24 21:44 (-0500) rwmcfa1
 
 	* Makefile.PL: removed runtime_reqs stuff, replaced by the pkg-config 
