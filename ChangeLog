@@ -1,3 +1,13 @@
+2004/07/23 21:13 (+0200) kaffeetisch
+
+	* t/Rsvg.t
+	* xs/Rsvg.xs: Bind and test rsvg_set_default_dpi_x_y and
+	rsvg_handle_set_dpi_x_y.  Make using gzip'ed SVGs work by allowing
+	\0s in the data passed to Gnome2::Rsvg::Handle::write.
+
+	* xs/Rsvg.xs: undef RSVG_DISABLE_DEPRECATED to make sure we get
+	some functions that were deprecated.
+
 2004/06/14 19:34 (+0200) kaffeetisch
 
 	* t/Rsvg.t
