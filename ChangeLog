@@ -1,3 +1,7 @@
+2004/07/24 19:29 (+0200) kaffeetisch
+
+	* t/Rsvg.t: Make the tests work on older versions of librsvg.
+
 2004/07/23 21:13 (+0200) kaffeetisch
 
 	* t/Rsvg.t

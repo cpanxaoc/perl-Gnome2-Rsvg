@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 185;
+use Test::More tests => 183;
 use Gnome2::Rsvg;
 
 my $number = qr/^\d+$/;
@@ -65,7 +65,7 @@ foreach (Gnome2::Rsvg -> pixbuf_from_file($svg),
 ###############################################################################
 
 SKIP: {
-  skip("set_default_dpi, set_dpi, *_ex, and new_gz are new in 2.2.0", 0)
+  skip("set_default_dpi, set_dpi, and new_gz are new in 2.2.0", 6)
     unless (Gnome2::Rsvg -> CHECK_VERSION(2, 2, 0));
 
   Gnome2::Rsvg -> set_default_dpi(96);
@@ -74,11 +74,8 @@ SKIP: {
   my $handle_gz = Gnome2::Rsvg::Handle -> new_gz();
   isa_ok($handle_gz, "Gnome2::Rsvg::Handle");
 
-  $handle_gz -> set_dpi(96);
-  $handle_gz -> set_size_callback($size_callback);
-
   SKIP: {
-    skip("couldn't open test image", 164)
+    skip("couldn't open test image", 5)
       unless (open(SVG, $svg_gz));
 
     undef $/;
@@ -91,17 +88,9 @@ SKIP: {
     my $pixbuf_gz = $handle_gz -> get_pixbuf();
     isa_ok($pixbuf_gz, "Gtk2::Gdk::Pixbuf");
 
-    is($pixbuf_gz -> get_width(), 340);
-    is($pixbuf_gz -> get_height(), 340);
+    like($pixbuf_gz -> get_width(), $number);
+    like($pixbuf_gz -> get_height(), $number);
   }
-}
-
-SKIP: {
-  skip("set_default_dpi_x_y and set_dpi_x_y are new in 2.8", 0)
-    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 7, 5)); # FIXME: 2.8
-
-  Gnome2::Rsvg -> set_default_dpi_x_y(96, 96);
-  $handle -> set_dpi_x_y(96, 96);
 }
 
 ###############################################################################
@@ -124,4 +113,14 @@ SKIP: {
 
   $handle = Gnome2::Rsvg::Handle -> new();
   isa_ok($handle -> pixbuf_from_file_at_zoom_with_max_ex($svg, 1.5, 1.5, 23, 42), "Gtk2::Gdk::Pixbuf");
+}
+
+###############################################################################
+
+SKIP: {
+  skip("set_default_dpi_x_y and set_dpi_x_y are new in 2.8", 0)
+    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 7, 5)); # FIXME: 2.8
+
+  Gnome2::Rsvg -> set_default_dpi_x_y(96, 96);
+  $handle -> set_dpi_x_y(96, 96);
 }
