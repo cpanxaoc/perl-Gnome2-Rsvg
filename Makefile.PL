@@ -15,11 +15,6 @@ our %build_reqs = (
   'Rsvg'                    => '2.0.0',
 );
 
-# minimum required version of dependancies we need to run
-our %runtime_reqs = (
-	'Rsvg' => undef,
-);
-
 unless (eval "use ExtUtils::Depends;"
            . "use ExtUtils::PkgConfig;"
            . "use Glib '$build_reqs{'perl-Glib'}';"
@@ -40,8 +35,6 @@ unless (eval "use ExtUtils::Depends;"
 }
 
 my %rsvg_pkgcfg = ExtUtils::PkgConfig->find("librsvg-2.0 >= $build_reqs{Rsvg}");
-
-$runtime_reqs{Rsvg} = $rsvg_pkgcfg{modversion};
 
 ###############################################################################
 
@@ -126,7 +119,6 @@ sub postamble
   return Glib::MakeHelper->postamble_clean ()
        . Glib::MakeHelper->postamble_docs (@main::xs_files)
        . Glib::MakeHelper->postamble_rpms (
-		'GNOME_RSVG_RUN' => $runtime_reqs{'Rsvg'},
 		'GNOME_RSVG' => $build_reqs{'Rsvg'},
 		'PERL_EXTUTILS_DEPENDS' => 
 			$build_reqs{'perl-ExtUtils-Depends'},
