@@ -360,4 +360,18 @@ GdkPixbuf *
 rsvg_handle_get_pixbuf (handle)
 	RsvgHandle *handle
 
+#if LIBRSVG_CHECK_VERSION (2, 4, 0)
+
+##  G_CONST_RETURN char* rsvg_handle_get_title (RsvgHandle *handle)
+const char*
+rsvg_handle_get_title (handle)
+	RsvgHandle *handle
+
+##  G_CONST_RETURN char* rsvg_handle_get_desc (RsvgHandle *handle)
+const char*
+rsvg_handle_get_desc (handle)
+	RsvgHandle *handle
+
+#endif /* 2.4.0 */
+
 ##  void rsvg_handle_free (RsvgHandle *handle) 

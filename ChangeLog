@@ -1,3 +1,9 @@
+2004/06/14 19:34 (+0200) kaffeetisch
+
+	* t/Rsvg.t
+	* xs/Rsvg.xs: Bind and test Gnome2::Rsvg::Handle::get_title and
+	get_desc.
+
 2004/06/05 00:49 (+0200) kaffeetisch
 
 	A NEWS

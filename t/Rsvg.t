@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 175;
+use Test::More tests => 177;
 use Gnome2::Rsvg;
 
 my $number = qr/^\d+$/;
@@ -42,6 +42,14 @@ SKIP: {
 
   like($pixbuf -> get_width(), $number);
   like($pixbuf -> get_height(), $number);
+}
+
+SKIP: {
+  skip("get_title and get_desc are new in 2.4", 2)
+    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 4, 0));
+
+  ok(defined($handle -> get_title()));
+  ok(defined($handle -> get_desc()));
 }
 
 ###############################################################################
