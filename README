@@ -27,5 +27,5 @@ Gnome2::Rsvg depends on:
   ExtUtils::Depends
   ExtUtils::PkgConfig
   Glib >= 1.01
-  Gtk2 >= 1.00
+  Gtk2 >= 1.01
   librsvg

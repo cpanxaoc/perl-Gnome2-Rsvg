@@ -1,3 +1,10 @@
+2004/06/05 00:49 (+0200) kaffeetisch
+
+	A NEWS
+	* MANIFEST
+	* README
+	* Rsvg.pm: Version 0.02.
+
 2004/05/17 18:03 (+0200) kaffeetisch
 
 	* rsvg2perl.h: Only include <librsvg/rsvg-gz.h> if it's available.
