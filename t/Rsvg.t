@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 183;
+use Test::More tests => 185;
 use Gnome2::Rsvg;
 
 my $number = qr/^\d+$/;
@@ -48,8 +48,8 @@ SKIP: {
   skip("get_title and get_desc are new in 2.4", 2)
     unless (Gnome2::Rsvg -> CHECK_VERSION(2, 4, 0));
 
-  ok(defined($handle -> get_title()));
-  ok(defined($handle -> get_desc()));
+  is($handle -> get_title(), "Urgs");
+  is($handle -> get_desc(), "Urgs");
 }
 
 ###############################################################################

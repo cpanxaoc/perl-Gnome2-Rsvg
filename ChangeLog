@@ -1,3 +1,10 @@
+2004/09/09 13:53 (+0200) kaffeetisch
+
+	* NEWS: Fix an error.
+
+	* t/Rsvg.t, t/window.svg: Work around a librsvg bug by using
+	<title> and <desc> tags.
+
 2004/07/24 19:34 (+0200) kaffeetisch
 
 	* NEWS, Rsvg.pm: Version 0.03.
@@ -57,7 +64,7 @@
 
 	* Makefile.PL: removed runtime_reqs stuff, replaced by the pkg-config 
 	trick
-	
+
 	* perl-Gnome2-Rsvg.spec.in: use pkg-config for Requires version
 
 2004/01/02 15:09 (-0500) rwmcfa1
