@@ -1,13 +1,14 @@
-genmaps.pl
+ChangeLog
 LICENSE
-Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
-maps
 META.yml			Module meta-data (added by MakeMaker)
-perl-Gnome2-Rsvg.spec.in
+Makefile.PL
 README
 Rsvg.pm
+genmaps.pl
+maps
+perl-Gnome2-Rsvg.spec.in
 rsvg2perl.c
 rsvg2perl.h
 t/Rsvg.t
