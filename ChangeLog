@@ -1,3 +1,9 @@
+2003/12/29 03:19 (+0100) kaffeetisch
+
+	* t/Rsvg.t
+	* xs/Rsvg.xs: Enable Gnome2::Rsvg::new_gz.  Still untested because
+	it doesn't seem to work.
+
 2003/12/25 02:41 (+0100) kaffeetisch
 
 	A .cvsignore

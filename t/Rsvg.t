@@ -16,6 +16,7 @@ my $size_callback = sub {
 };
 
 my $svg = "t/window.svg";
+my $svg_gz = "t/window.svg.gz";
 
 ###############################################################################
 
@@ -43,6 +44,33 @@ SKIP: {
   is($pixbuf -> get_width(), 340);
   is($pixbuf -> get_height(), 340);
 }
+
+###############################################################################
+
+# my $handle_gz = Gnome2::Rsvg::Handle -> new_gz();
+# isa_ok($handle_gz, "Gnome2::Rsvg::Handle");
+# 
+# $handle_gz -> set_dpi(96);
+# $handle_gz -> set_size_callback($size_callback);
+# 
+# SKIP: {
+#   skip("couldn't open test image", 164)
+#     unless (open(SVG, $svg_gz));
+# 
+#   while (<SVG>) {
+#     ok($handle_gz -> write($_));
+#   }
+# 
+#   close(SVG);
+# 
+#   ok($handle_gz -> close());
+# 
+#   my $pixbuf_gz = $handle_gz -> get_pixbuf();
+#   isa_ok($pixbuf_gz, "Gtk2::Gdk::Pixbuf");
+# 
+#   is($pixbuf_gz -> get_width(), 340);
+#   is($pixbuf_gz -> get_height(), 340);
+# }
 
 ###############################################################################
 

@@ -270,12 +270,11 @@ rsvg_handle_new (class)
     C_ARGS:
 	/* void */
 
-# FIXME: doesn't seem to work, why?
-###  RsvgHandle *rsvg_handle_new_gz (void) 
-#RsvgHandle_own *
-#rsvg_handle_new_gz (class)
-#    C_ARGS:
-#	/* void */
+##  RsvgHandle *rsvg_handle_new_gz (void) 
+RsvgHandle_own *
+rsvg_handle_new_gz (class)
+    C_ARGS:
+	/* void */
 
 ##  void rsvg_handle_set_dpi (RsvgHandle * handle, double dpi) 
 void
