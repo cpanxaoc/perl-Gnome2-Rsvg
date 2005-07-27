@@ -18,11 +18,8 @@ sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
 Gnome2::Rsvg -> bootstrap($VERSION);
 
-# Preloaded methods go here.
-
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -64,10 +61,10 @@ L<http://librsvg.sourceforge.net/docs/html/index.html>
 
 =head1 AUTHOR
 
-Torsten Schoenfeld E<lt>kaffeetisch@web.deE<gt>.
+Torsten Schoenfeld E<lt>kaffeetisch at gmx dot deE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2003 by the gtk2-perl team
+Copyright (C) 2003-2005 by the gtk2-perl team
 
 =cut
