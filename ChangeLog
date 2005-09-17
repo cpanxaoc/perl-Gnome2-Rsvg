@@ -1,5 +1,9 @@
 2005/09/17	kaffeetisch
 
+	* NEWS, README, Rsvg.pm: Version 0.05.
+
+2005/09/17	kaffeetisch
+
 	* Makefile.PL: Require librsvg 2.12.0 -- there were just too many
 	API changes.
 
