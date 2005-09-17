@@ -182,13 +182,12 @@ rsvg_pixbuf_from_file_at_zoom_with_max (class, file_name, x_zoom, y_zoom, max_wi
     CLEANUP:
 	gdk_pixbuf_unref (RETVAL);
 
-##  void rsvg_set_default_dpi (double dpi_x, double dpi_y)
+##  void rsvg_set_default_dpi (double dpi,)
 void
-rsvg_set_default_dpi (class, dpi_x, dpi_y)
-	double dpi_x
-	double dpi_y
+rsvg_set_default_dpi (class, dpi)
+	double dpi
     C_ARGS:
-	dpi_x, dpi_y
+	dpi
 
 MODULE = Gnome2::Rsvg	PACKAGE = Gnome2::Rsvg::Handle	PREFIX = rsvg_handle_
 
@@ -268,12 +267,11 @@ rsvg_handle_get_desc (handle)
 
 #endif /* 2.4.0 */
 
-##  void rsvg_handle_set_dpi (RsvgHandle *handle, double dpi_x, double dpi_y)
+##  void rsvg_handle_set_dpi (RsvgHandle *handle, double dpi)
 void
-rsvg_handle_set_dpi (handle, dpi_x, dpi_y)
+rsvg_handle_set_dpi (handle, dpi)
 	RsvgHandle *handle
-	double dpi_x
-	double dpi_y
+	double dpi
 
 #if LIBRSVG_CHECK_VERSION (2, 9, 0) /* FIXME: 2.10. */
 

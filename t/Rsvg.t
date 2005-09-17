@@ -73,8 +73,8 @@ SKIP: {
   skip("set_default_dpi and set_dpi are new in 2.8", 0)
     unless (Gnome2::Rsvg -> CHECK_VERSION(2, 8, 0));
 
-  Gnome2::Rsvg -> set_default_dpi(96, 96);
-  $handle -> set_dpi(96, 96);
+  Gnome2::Rsvg -> set_default_dpi(96);
+  $handle -> set_dpi(96);
 }
 
 SKIP: {

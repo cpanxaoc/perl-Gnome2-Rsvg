@@ -12,7 +12,7 @@ our %build_reqs = (
   'perl-ExtUtils-PkgConfig' => '1.03',
   'perl-Glib'               => '1.02',
   'perl-Gtk2'               => '1.02',
-  'Rsvg'                    => '2.99.0', # FIXME
+  'Rsvg'                    => '2.12.0',
 );
 
 unless (eval "use ExtUtils::Depends $build_reqs{'perl-ExtUtils-Depends'};"
