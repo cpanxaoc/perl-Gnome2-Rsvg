@@ -79,7 +79,7 @@ SKIP: {
 
 SKIP: {
   skip("[sg]et_base_uri and get_metadata are new in 2.10", 2)
-    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 9, 0)); # FIXME: 2.10.
+    unless (Gnome2::Rsvg -> CHECK_VERSION(2, 10, 0));
 
   $handle -> set_base_uri("file:///tmp/window.svg");
   is($handle -> get_base_uri(), "file:///tmp/window.svg");

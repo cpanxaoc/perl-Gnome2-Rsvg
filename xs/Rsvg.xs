@@ -273,7 +273,7 @@ rsvg_handle_set_dpi (handle, dpi)
 	RsvgHandle *handle
 	double dpi
 
-#if LIBRSVG_CHECK_VERSION (2, 9, 0) /* FIXME: 2.10. */
+#if LIBRSVG_CHECK_VERSION (2, 10, 0)
 
 ##  void rsvg_handle_set_base_uri (RsvgHandle *handle, const char *base_uri)
 void
