@@ -1,3 +1,7 @@
+2005/12/12	kaffeetisch
+
+	* xs/Rsvg.xs. Hush a compiler warning.
+
 2005/09/28	kaffeetisch
 
 	* xs/Rsvg.xs, t/Rsvg.t: Make version checks refer to stable

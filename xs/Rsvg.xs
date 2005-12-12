@@ -228,7 +228,7 @@ rsvg_handle_write (handle, data)
 	STRLEN len;
         GError *error = NULL;
     CODE:
-	buf = SvPV (data, len);
+	buf = (const guchar *) SvPV (data, len);
 	RETVAL = rsvg_handle_write (handle, buf, len, &error);
         if (error)
 		gperl_croak_gerror (NULL, error);
