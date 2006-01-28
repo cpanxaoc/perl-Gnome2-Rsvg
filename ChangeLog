@@ -1,5 +1,9 @@
 2006/01/28	kaffeetisch
 
+	* NEWS, Rsvg.pm: Version 0.06.
+
+2006/01/28	kaffeetisch
+
 	* t/Rsvg.t: Make the size callback test more robust.
 
 2005/12/12	kaffeetisch
