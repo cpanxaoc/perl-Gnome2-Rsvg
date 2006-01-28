@@ -8,8 +8,12 @@ my $number = qr/^\d+$/;
 my $size_callback = sub {
   my ($width, $height) = @_;
 
-  like($width, $number);
-  like($height, $number);
+  my $been_here = 0 if 0;
+  unless ($been_here) {
+    $been_here = 1;
+    like($width, $number);
+    like($height, $number);
+  }
 
   return ($width * 2,
           $height * 2);

@@ -1,3 +1,7 @@
+2006/01/28	kaffeetisch
+
+	* t/Rsvg.t: Make the size callback test more robust.
+
 2005/12/12	kaffeetisch
 
 	* xs/Rsvg.xs. Hush a compiler warning.
