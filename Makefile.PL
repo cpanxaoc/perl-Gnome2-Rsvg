@@ -68,7 +68,8 @@ $rsvg->add_typemaps (map { File::Spec->catfile (cwd(), $_) }
 
 $rsvg->install (qw(rsvg2perl.h
                    build/rsvg2perl-autogen.h
-                   build/rsvg2perl-version.h));
+                   build/rsvg2perl-version.h
+                   doctypes));
 $rsvg->save_config ('build/IFiles.pm');
 
 WriteMakefile(
@@ -86,6 +87,7 @@ sub MY::postamble {
   return Glib::MakeHelper->postamble_clean ()
        . Glib::MakeHelper->postamble_docs_full (
 		DEPENDS => $rsvg,
+		DOCTYPES => 'doctypes',
 		COPYRIGHT_FROM => 'copyright.pod'
          )
        . Glib::MakeHelper->postamble_rpms (
