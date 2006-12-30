@@ -12,7 +12,7 @@ use Gtk2;
 require DynaLoader;
 
 our @ISA = qw(DynaLoader);
-our $VERSION = '0.06';
+our $VERSION = '0.10';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
