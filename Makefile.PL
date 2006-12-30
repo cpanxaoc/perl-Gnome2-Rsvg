@@ -12,7 +12,15 @@ our %build_reqs = (
   'perl-ExtUtils-PkgConfig' => '1.03',
   'perl-Glib'               => '1.02',
   'perl-Gtk2'               => '1.02',
-  'Rsvg'                    => '2.12.0',
+  'perl-Cairo'              => '1.00', # if librsvg >= 2.14.0
+  'librsvg'                 => '2.12.0',
+);
+
+our %pm_reqs = (
+  'Gtk2'                => $build_reqs{'perl-Gtk2'},
+  'Glib'                => $build_reqs{'perl-Glib'},
+  'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
+  'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},
 );
 
 unless (eval "use ExtUtils::Depends $build_reqs{'perl-ExtUtils-Depends'};"
@@ -25,17 +33,29 @@ unless (eval "use ExtUtils::Depends $build_reqs{'perl-ExtUtils-Depends'};"
   warn "$@\n";
   WriteMakefile(
     PREREQ_FATAL => 1,
-    PREREQ_PM    => {
-      "Gtk2"                => $build_reqs{'perl-Gtk2'},
-      "Glib"                => $build_reqs{'perl-Glib'},
-      "ExtUtils::Depends"   => $build_reqs{'perl-ExtUtils-Depends'},
-      "ExtUtils::PkgConfig" => $build_reqs{'perl-ExtUtils-PkgConfig'},
-    },
+    PREREQ_PM    => \%pm_reqs,
   );
   exit 1; # not reached
 }
 
-my %rsvg_pkgcfg = ExtUtils::PkgConfig->find("librsvg-2.0 >= $build_reqs{Rsvg}");
+my %rsvg_pkgcfg = ExtUtils::PkgConfig->find("librsvg-2.0 >= $build_reqs{librsvg}");
+
+###############################################################################
+
+my $need_cairo = 0;
+my @rsvg_version = split /\./, $rsvg_pkgcfg{modversion};
+if ($rsvg_version[0] > 2 || ($rsvg_version[0] == 2 && $rsvg_version[1] >= 14)) {
+  $need_cairo = 1;
+  $pm_reqs{Cairo} = $build_reqs{'perl-Cairo'};
+  unless (eval "use Cairo '$build_reqs{'perl-Cairo'}'; 1;") {
+    warn "$@\n";
+    WriteMakefile(
+      PREREQ_FATAL => 1,
+      PREREQ_PM    => \%pm_reqs,
+    );
+    exit 1; # not reached
+  }
+}
 
 ###############################################################################
 
@@ -57,7 +77,8 @@ ExtUtils::PkgConfig->write_version_macros (
 
 ###############################################################################
 
-my $rsvg = ExtUtils::Depends->new ('Gnome2::Rsvg', 'Gtk2');
+my @deps = $need_cairo ? qw(Gtk2 Cairo) : qw(Gtk2);
+my $rsvg = ExtUtils::Depends->new ('Gnome2::Rsvg', @deps);
 $rsvg->set_inc ($rsvg_pkgcfg{cflags});
 $rsvg->set_libs ($rsvg_pkgcfg{libs});
 $rsvg->add_xs (@xs_files);
@@ -78,6 +99,7 @@ WriteMakefile(
   ABSTRACT_FROM   => 'Rsvg.pm', # retrieve abstract from module
   XSPROTOARG      => '-noprototypes',
   MAN3PODS        => \%pod_files,
+  PREREQ_PM       => \%pm_reqs,
   $rsvg->get_makefile_vars,
 );
 
@@ -91,10 +113,10 @@ sub MY::postamble {
 		COPYRIGHT_FROM => 'copyright.pod'
          )
        . Glib::MakeHelper->postamble_rpms (
-		'GNOME_RSVG' => $build_reqs{'Rsvg'},
-		'PERL_EXTUTILS_DEPENDS' => 
+		'GNOME_RSVG' => $build_reqs{'librsvg'},
+		'PERL_EXTUTILS_DEPENDS' =>
 			$build_reqs{'perl-ExtUtils-Depends'},
-		'PERL_EXTUTILS_PKGCONFIG' => 
+		'PERL_EXTUTILS_PKGCONFIG' =>
 			$build_reqs{'perl-ExtUtils-PkgConfig'},
 		'PERL_GLIB' => $build_reqs{'perl-Glib'},
 		'PERL_GTK' => $build_reqs{'perl-Gtk2'},
