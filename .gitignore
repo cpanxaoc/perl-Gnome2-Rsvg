@@ -1,0 +1,7 @@
+Makefile
+Rsvg.bs
+pm_to_blib
+blib
+build
+xs/*.c
+xs/*.o
