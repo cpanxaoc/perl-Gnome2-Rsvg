@@ -11,8 +11,10 @@ while (<SVG>) {
 close(SVG);
 $handle -> close() or die("Could not parse '$svg'");
 
-# FIXME: Use get_dimensions() once available.
-my $surface = Cairo::ImageSurface -> create("argb32", 100, 100);
+my $dim = $handle -> get_dimensions();
+my $surface = Cairo::ImageSurface -> create("argb32",
+                                            $dim->{width},
+                                            $dim->{height});
 my $cr = Cairo::Context -> create($surface);
 $handle -> render_cairo($cr);
 $surface -> write_to_png(basename($svg) . '.png');
