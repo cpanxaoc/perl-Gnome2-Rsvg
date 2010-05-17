@@ -98,7 +98,7 @@ CHECK_VERSION (class, major, minor, micro)
 =for apidoc __gerror__
 =cut
 ##  GdkPixbuf *rsvg_pixbuf_from_file (const gchar *file_name, GError **error)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_pixbuf_from_file (class, file_name)
 	const gchar *file_name
     PREINIT:
@@ -109,13 +109,11 @@ rsvg_pixbuf_from_file (class, file_name)
 		gperl_croak_gerror (file_name, error);
     OUTPUT:
 	RETVAL
-    CLEANUP:
-	if (RETVAL) gdk_pixbuf_unref (RETVAL);
 
 =for apidoc __gerror__
 =cut
 ##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom (const gchar *file_name, double x_zoom, double y_zoom, GError **error)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_pixbuf_from_file_at_zoom (class, file_name, x_zoom, y_zoom)
 	const gchar *file_name
 	double x_zoom
@@ -128,13 +126,11 @@ rsvg_pixbuf_from_file_at_zoom (class, file_name, x_zoom, y_zoom)
 		gperl_croak_gerror (file_name, error);
     OUTPUT:
 	RETVAL
-    CLEANUP:
-	gdk_pixbuf_unref (RETVAL);
 
 =for apidoc __gerror__
 =cut
 ##  GdkPixbuf *rsvg_pixbuf_from_file_at_size (const gchar *file_name, gint width, gint height, GError **error)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_pixbuf_from_file_at_size (class, file_name, width, height)
 	const gchar *file_name
 	gint width
@@ -147,13 +143,11 @@ rsvg_pixbuf_from_file_at_size (class, file_name, width, height)
 		gperl_croak_gerror (file_name, error);
     OUTPUT:
 	RETVAL
-    CLEANUP:
-	gdk_pixbuf_unref (RETVAL);
 
 =for apidoc __gerror__
 =cut
 ##  GdkPixbuf *rsvg_pixbuf_from_file_at_max_size (const gchar *file_name, gint max_width, gint max_height, GError **error)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_pixbuf_from_file_at_max_size (class, file_name, max_width, max_height)
 	const gchar *file_name
 	gint max_width
@@ -166,13 +160,11 @@ rsvg_pixbuf_from_file_at_max_size (class, file_name, max_width, max_height)
 		gperl_croak_gerror (file_name, error);
     OUTPUT:
 	RETVAL
-    CLEANUP:
-	gdk_pixbuf_unref (RETVAL);
 
 =for apidoc __gerror__
 =cut
 ##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom_with_max (const gchar *file_name, double x_zoom, double y_zoom, gint max_width, gint max_height, GError **error)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_pixbuf_from_file_at_zoom_with_max (class, file_name, x_zoom, y_zoom, max_width, max_height)
 	const gchar *file_name
 	double x_zoom
@@ -187,8 +179,6 @@ rsvg_pixbuf_from_file_at_zoom_with_max (class, file_name, x_zoom, y_zoom, max_wi
 		gperl_croak_gerror (file_name, error);
     OUTPUT:
 	RETVAL
-    CLEANUP:
-	gdk_pixbuf_unref (RETVAL);
 
 ##  void rsvg_set_default_dpi (double dpi,)
 void
@@ -261,7 +251,7 @@ rsvg_handle_close (handle)
 	RETVAL
 
 ##  GdkPixbuf *rsvg_handle_get_pixbuf (RsvgHandle *handle)
-GdkPixbuf *
+GdkPixbuf_noinc *
 rsvg_handle_get_pixbuf (handle)
 	RsvgHandle *handle
 
