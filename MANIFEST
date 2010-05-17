@@ -16,5 +16,4 @@ rsvg.typemap
 rsvg2perl.h
 t/Rsvg.t
 t/window.svg
-t/window.svg.gz
 xs/Rsvg.xs
