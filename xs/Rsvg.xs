@@ -64,6 +64,49 @@ rsvg2perl_size_func (gint *width,
 
 /* ------------------------------------------------------------------------- */
 
+#if LIBRSVG_CHECK_VERSION (2, 14, 0)
+
+static SV *
+newSVRsvgDimensionData (RsvgDimensionData *data)
+{
+	HV *hv;
+
+	if (!data)
+		return &PL_sv_undef;
+
+	hv = newHV ();
+	hv_store (hv, "width", 5, newSViv (data->width), 0);
+	hv_store (hv, "height", 6, newSViv (data->height), 0);
+	hv_store (hv, "em", 2, newSVnv (data->em), 0);
+	hv_store (hv, "ex", 2, newSVnv (data->ex), 0);
+
+	return newRV_noinc ((SV *) hv);
+}
+
+#endif
+
+#if LIBRSVG_CHECK_VERSION (2, 22, 0)
+
+static SV *
+newSVRsvgPositionData (RsvgPositionData *data)
+{
+	HV *hv;
+
+	if (!data)
+		return &PL_sv_undef;
+
+	hv = newHV ();
+	hv_store (hv, "x", 1, newSViv (data->x), 0);
+	hv_store (hv, "y", 1, newSVnv (data->y), 0);
+
+	return newRV_noinc ((SV *) hv);
+}
+
+#endif
+
+/* ------------------------------------------------------------------------- */
+
+
 MODULE = Gnome2::Rsvg	PACKAGE = Gnome2::Rsvg	PREFIX = rsvg_
 
 =for object Gnome2::Rsvg::main
@@ -187,6 +230,12 @@ rsvg_set_default_dpi (class, dpi)
     C_ARGS:
 	dpi
 
+##  void rsvg_set_default_dpi_x_y (double dpi_x, double dpi_y)
+void
+rsvg_set_default_dpi_x_y (class, double dpi_x, double dpi_y)
+    C_ARGS:
+	dpi_x, dpi_y
+
 MODULE = Gnome2::Rsvg	PACKAGE = Gnome2::Rsvg::Handle	PREFIX = rsvg_handle_
 
 ##  RsvgHandle *rsvg_handle_new (void)
@@ -250,10 +299,52 @@ rsvg_handle_close (handle)
     OUTPUT:
 	RETVAL
 
+#if LIBRSVG_CHECK_VERSION (2, 14, 0)
+
+=for apidoc __gerror__
+=cut
+##  RsvgHandle * rsvg_handle_new_from_data (const guint8 *data, gsize data_len, GError **error);
+RsvgHandle *
+rsvg_handle_new_from_data (class, SV *data)
+    PREINIT:
+	const guint8 *real_data;
+	gsize data_len = 0;
+	GError *error = NULL;
+    CODE:
+	real_data = (const guint8 *) SvPV (data, data_len);
+	RETVAL = rsvg_handle_new_from_data (real_data, data_len, &error);
+	if (error)
+		gperl_croak_gerror (NULL, error);
+    OUTPUT:
+	RETVAL
+
+=for apidoc __gerror__
+=cut
+##  Deliberately use 'char' instead of 'gchar' to avoid encorcing UTF-8.
+##  RsvgHandle * rsvg_handle_new_from_file (const gchar *file_name, GError **error);
+RsvgHandle *
+rsvg_handle_new_from_file (class, const char *file_name)
+    PREINIT:
+	GError *error = NULL;
+    CODE:
+	RETVAL = rsvg_handle_new_from_file (file_name, &error);
+	if (error)
+		gperl_croak_gerror (NULL, error);
+    OUTPUT:
+	RETVAL
+
+#endif
+
 ##  GdkPixbuf *rsvg_handle_get_pixbuf (RsvgHandle *handle)
 GdkPixbuf_noinc *
 rsvg_handle_get_pixbuf (handle)
 	RsvgHandle *handle
+
+#if LIBRSVG_CHECK_VERSION (2, 14, 0)
+
+GdkPixbuf_noinc * rsvg_handle_get_pixbuf_sub (RsvgHandle * handle, const char_ornull *id);
+
+#endif
 
 #if LIBRSVG_CHECK_VERSION (2, 4, 0)
 
@@ -269,11 +360,60 @@ rsvg_handle_get_desc (handle)
 
 #endif /* 2.4.0 */
 
+#if LIBRSVG_CHECK_VERSION (2, 14, 0)
+
+##  void rsvg_handle_get_dimensions (RsvgHandle *handle, RsvgDimensionData *dimension_data);
+SV *
+rsvg_handle_get_dimensions (RsvgHandle *handle)
+    PREINIT:
+	RsvgDimensionData dimension_data = {0,};
+    CODE:
+	rsvg_handle_get_dimensions (handle, &dimension_data);
+	RETVAL = newSVRsvgDimensionData (&dimension_data);
+    OUTPUT:
+	RETVAL
+
+#endif
+
+#if LIBRSVG_CHECK_VERSION (2, 22, 0)
+
+##  gboolean rsvg_handle_get_dimensions_sub (RsvgHandle *handle, RsvgDimensionData *dimension_data, const char *id);
+SV *
+rsvg_handle_get_dimensions_sub (RsvgHandle *handle, const char_ornull *id)
+    PREINIT:
+	RsvgDimensionData dimension_data = {0,};
+    CODE:
+	if (!rsvg_handle_get_dimensions_sub (handle, &dimension_data, id))
+		RETVAL = &PL_sv_undef;
+	else
+		RETVAL = newSVRsvgDimensionData (&dimension_data);
+    OUTPUT:
+	RETVAL
+
+##  gboolean rsvg_handle_get_position_sub (RsvgHandle *handle, RsvgPositionData *position_data, const char *id);
+SV *
+rsvg_handle_get_position_sub (RsvgHandle *handle, const char_ornull *id)
+    PREINIT:
+	RsvgPositionData position_data = {0,};
+    CODE:
+	if (!rsvg_handle_get_position_sub (handle, &position_data, id))
+		RETVAL = &PL_sv_undef;
+	else
+		RETVAL = newSVRsvgPositionData (&position_data);
+    OUTPUT:
+	RETVAL
+
+gboolean rsvg_handle_has_sub (RsvgHandle *handle, const char *id);
+
+#endif
+
 ##  void rsvg_handle_set_dpi (RsvgHandle *handle, double dpi)
 void
 rsvg_handle_set_dpi (handle, dpi)
 	RsvgHandle *handle
 	double dpi
+
+void rsvg_handle_set_dpi_x_y (RsvgHandle *handle, double dpi_x, double dpi_y);
 
 #if LIBRSVG_CHECK_VERSION (2, 10, 0)
 
