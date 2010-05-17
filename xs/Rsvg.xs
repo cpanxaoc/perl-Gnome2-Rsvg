@@ -295,10 +295,20 @@ rsvg_handle_get_metadata (handle)
 
 #endif /* 2.10.0 */
 
+#if LIBRSVG_CHECK_VERSION (2, 22, 0)
+
+gboolean rsvg_handle_render_cairo (RsvgHandle *handle, cairo_t *cr);
+
+gboolean rsvg_handle_render_cairo_sub(RsvgHandle *handle, cairo_t *cr, const char_ornull * id);
+
+#else
+
 #if LIBRSVG_CHECK_VERSION (2, 14, 0)
 
 void rsvg_handle_render_cairo (RsvgHandle *handle, cairo_t *cr);
 
-void rsvg_handle_render_cairo_sub(RsvgHandle *handle, cairo_t *cr, const char * id);
+void rsvg_handle_render_cairo_sub(RsvgHandle *handle, cairo_t *cr, const char_ornull * id);
+
+#endif
 
 #endif
