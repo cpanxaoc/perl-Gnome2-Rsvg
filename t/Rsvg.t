@@ -5,12 +5,11 @@ use Gnome2::Rsvg;
 
 my $number = qr/^\d+$/;
 
+my $been_here = 0;
 my $size_callback = sub {
   my ($width, $height) = @_;
 
-  my $been_here = 0 if 0;
-  unless ($been_here) {
-    $been_here = 1;
+  unless ($been_here++) {
     like($width, $number);
     like($height, $number);
   }
