@@ -1,21 +1,19 @@
 /*
- * Copyright (C) 2003-2005 by the gtk2-perl team
- * 
+ * Copyright (C) 2003-2005, 2010  Torsten Schoenfeld
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id$
  */
 
 #include "rsvg2perl.h"
@@ -95,9 +93,11 @@ CHECK_VERSION (class, major, minor, micro)
     OUTPUT:
 	RETVAL
 
-##  GQuark rsvg_error_quark (void) G_GNUC_CONST 
+##  GQuark rsvg_error_quark (void) G_GNUC_CONST
 
-##  GdkPixbuf *rsvg_pixbuf_from_file (const gchar *file_name, GError **error) 
+=for apidoc __gerror__
+=cut
+##  GdkPixbuf *rsvg_pixbuf_from_file (const gchar *file_name, GError **error)
 GdkPixbuf *
 rsvg_pixbuf_from_file (class, file_name)
 	const gchar *file_name
@@ -112,7 +112,9 @@ rsvg_pixbuf_from_file (class, file_name)
     CLEANUP:
 	if (RETVAL) gdk_pixbuf_unref (RETVAL);
 
-##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom (const gchar *file_name, double x_zoom, double y_zoom, GError **error) 
+=for apidoc __gerror__
+=cut
+##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom (const gchar *file_name, double x_zoom, double y_zoom, GError **error)
 GdkPixbuf *
 rsvg_pixbuf_from_file_at_zoom (class, file_name, x_zoom, y_zoom)
 	const gchar *file_name
@@ -129,7 +131,9 @@ rsvg_pixbuf_from_file_at_zoom (class, file_name, x_zoom, y_zoom)
     CLEANUP:
 	gdk_pixbuf_unref (RETVAL);
 
-##  GdkPixbuf *rsvg_pixbuf_from_file_at_size (const gchar *file_name, gint width, gint height, GError **error) 
+=for apidoc __gerror__
+=cut
+##  GdkPixbuf *rsvg_pixbuf_from_file_at_size (const gchar *file_name, gint width, gint height, GError **error)
 GdkPixbuf *
 rsvg_pixbuf_from_file_at_size (class, file_name, width, height)
 	const gchar *file_name
@@ -146,7 +150,9 @@ rsvg_pixbuf_from_file_at_size (class, file_name, width, height)
     CLEANUP:
 	gdk_pixbuf_unref (RETVAL);
 
-##  GdkPixbuf *rsvg_pixbuf_from_file_at_max_size (const gchar *file_name, gint max_width, gint max_height, GError **error) 
+=for apidoc __gerror__
+=cut
+##  GdkPixbuf *rsvg_pixbuf_from_file_at_max_size (const gchar *file_name, gint max_width, gint max_height, GError **error)
 GdkPixbuf *
 rsvg_pixbuf_from_file_at_max_size (class, file_name, max_width, max_height)
 	const gchar *file_name
@@ -163,7 +169,9 @@ rsvg_pixbuf_from_file_at_max_size (class, file_name, max_width, max_height)
     CLEANUP:
 	gdk_pixbuf_unref (RETVAL);
 
-##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom_with_max (const gchar *file_name, double x_zoom, double y_zoom, gint max_width, gint max_height, GError **error) 
+=for apidoc __gerror__
+=cut
+##  GdkPixbuf *rsvg_pixbuf_from_file_at_zoom_with_max (const gchar *file_name, double x_zoom, double y_zoom, gint max_width, gint max_height, GError **error)
 GdkPixbuf *
 rsvg_pixbuf_from_file_at_zoom_with_max (class, file_name, x_zoom, y_zoom, max_width, max_height)
 	const gchar *file_name
@@ -191,7 +199,7 @@ rsvg_set_default_dpi (class, dpi)
 
 MODULE = Gnome2::Rsvg	PACKAGE = Gnome2::Rsvg::Handle	PREFIX = rsvg_handle_
 
-##  RsvgHandle *rsvg_handle_new (void) 
+##  RsvgHandle *rsvg_handle_new (void)
 RsvgHandle *
 rsvg_handle_new (class)
     C_ARGS:
@@ -203,7 +211,7 @@ DESTROY (handle)
     CODE:
 	rsvg_handle_free (handle);
 
-##  void rsvg_handle_set_size_callback (RsvgHandle *handle, RsvgSizeFunc size_func, gpointer user_data, GDestroyNotify user_data_destroy) 
+##  void rsvg_handle_set_size_callback (RsvgHandle *handle, RsvgSizeFunc size_func, gpointer user_data, GDestroyNotify user_data_destroy)
 void
 rsvg_handle_set_size_callback (handle, size_func, user_data=NULL)
 	RsvgHandle *handle
@@ -218,7 +226,9 @@ rsvg_handle_set_size_callback (handle, size_func, user_data=NULL)
 	                               callback,
 	                               (GDestroyNotify) gperl_callback_destroy);
 
-##  gboolean rsvg_handle_write (RsvgHandle *handle, const guchar *buf, gsize count, GError **error) 
+=for apidoc __gerror__
+=cut
+##  gboolean rsvg_handle_write (RsvgHandle *handle, const guchar *buf, gsize count, GError **error)
 gboolean
 rsvg_handle_write (handle, data)
 	RsvgHandle *handle
@@ -235,7 +245,9 @@ rsvg_handle_write (handle, data)
     OUTPUT:
 	RETVAL
 
-##  gboolean rsvg_handle_close (RsvgHandle *handle, GError **error) 
+=for apidoc __gerror__
+=cut
+##  gboolean rsvg_handle_close (RsvgHandle *handle, GError **error)
 gboolean
 rsvg_handle_close (handle)
 	RsvgHandle *handle
@@ -248,7 +260,7 @@ rsvg_handle_close (handle)
     OUTPUT:
 	RETVAL
 
-##  GdkPixbuf *rsvg_handle_get_pixbuf (RsvgHandle *handle) 
+##  GdkPixbuf *rsvg_handle_get_pixbuf (RsvgHandle *handle)
 GdkPixbuf *
 rsvg_handle_get_pixbuf (handle)
 	RsvgHandle *handle
