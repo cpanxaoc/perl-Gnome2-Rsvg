@@ -54,8 +54,55 @@ Gnome2::Rsvg - Perl interface to the RSVG library
 
 =head1 ABSTRACT
 
-This module allows a Perl developer to use the Scalable Vector Graphics library
-(librsvg for short).
+B<DEPRECATED> This module allows a Perl developer to use the Scalable Vector
+Graphics library (librsvg for short).
+
+=head1 DESCRIPTION
+
+B<NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE>
+
+This module has been deprecated by the Gtk-Perl project.  This means that the
+module will no longer be updated with security patches, bug fixes, or when
+changes are made in the Perl ABI.  The Git repo for this module has been
+archived (made read-only), it will no longer possible to submit new commits to
+it.  You are more than welcome to ask about this module on the Gtk-Perl
+mailing list, but our priorities going forward will be maintaining Gtk-Perl
+modules that are supported and maintained upstream; this module is neither.
+
+Since this module is licensed under the LGPL v2.1, you may also fork this
+module, if you wish, but you will need to use a different name for it on CPAN,
+and the Gtk-Perl team requests that you use your own resources (mailing list,
+Git repos, bug trackers, etc.) to maintain your fork going forward.
+
+=over
+
+=item *
+
+Perl URL: https://gitlab.gnome.org/GNOME/perl-gnome2-rsvg
+
+=item *
+
+Upstream URL: https://gitlab.gnome.org/GNOME/librsvg
+
+=item *
+
+Last compatible upstream version: 2.32.1
+
+=item *
+
+Last compatible upstream release date: 2010-11-13
+
+=item *
+
+Migration path for this module: G:O:I
+
+=item *
+
+Migration module URL: https://metacpan.org/pod/Glib::Object::Introspection
+
+=back
+
+B<NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE>
 
 =head1 SEE ALSO
 
