@@ -106,6 +106,7 @@ WriteMakefile(
 
   META_MERGE => {
     configure_requires => \%PREREQ_PM,
+    x_deprecated => 1,
   },
 
   $rsvg->get_makefile_vars,
