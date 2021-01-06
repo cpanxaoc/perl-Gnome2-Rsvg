@@ -26,7 +26,7 @@ __END__
 
 =head1 NAME
 
-Gnome2::Rsvg - Perl interface to the RSVG library
+Gnome2::Rsvg - (DEPRECATED) Perl interface to the RSVG library
 
 =head1 SYNOPSIS
 
